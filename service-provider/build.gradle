@@ -1,0 +1,5 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile(project(":service-api"))
+}

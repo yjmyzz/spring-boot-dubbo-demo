@@ -1,0 +1,45 @@
+subprojects {
+    buildscript {
+        ext {
+            springBootVersion = '1.5.3.RELEASE'
+        }
+        repositories {
+            mavenLocal()
+            maven {
+                url "http://maven.aliyun.com/nexus/content/groups/public/"
+            }
+            mavenCentral()
+        }
+        dependencies {
+            classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        }
+    }
+
+    apply plugin: "java"
+    apply plugin: "maven"
+    apply plugin: 'idea'
+
+
+    targetCompatibility = 1.8
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenLocal()
+        maven {
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
+        mavenCentral()
+    }
+
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 1, "minutes"
+    }
+
+    dependencies {
+        compile('io.dubbo.springboot:spring-boot-starter-dubbo:1.0.0')
+        compile('org.springframework.boot:spring-boot-starter-web:1.5.3.RELEASE')
+    }
+}
+
+
+

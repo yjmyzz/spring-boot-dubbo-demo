@@ -1,0 +1,10 @@
+server:
+  port: 8002
+
+spring:
+  dubbo:
+    scan: com.cnblogs.yjmyzz.service
+    application:
+      name: consumer
+    registry:
+      address: zookeeper://127.0.0.1:2181
