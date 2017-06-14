@@ -1,9 +1,11 @@
 package com.cnblogs.yjmyzz.service.api.vo;
 
+import java.io.Serializable;
+
 /**
  * Created by yangjunming on 2017/6/14.
  */
-public class CityVO {
+public class CityVO implements Serializable {
 
     /**
      * 城市名
