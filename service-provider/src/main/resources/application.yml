@@ -1,13 +1,43 @@
 server:
-  port: 8001
+    port: 8001
+
+logging:
+    level:
+        tk.mybatis: TRACE
 
 spring:
   dubbo:
     scan: com.cnblogs.yjmyzz.service
     application:
-      name: provider
+        name: provider
     registry:
-      address: zookeeper://127.0.0.1:2181
+        address: zookeeper://127.0.0.1:2181
     protocol:
-      name: dubbo
-      port: 20880
+        name: dubbo
+        port: 20880
+
+druid:
+    url: jdbc:mysql://localhost:3306/study?useSSL=false
+    driver-class: com.mysql.jdbc.Driver
+    username: root
+    password: A1b2c3@def.com
+    initial-size: 1
+    min-idle: 1
+    max-active: 20
+    test-on-borrow: true
+
+mybatis:
+    type-aliases-package: com.cnblogs.yjmyzz.service.dao
+    mapper-locations: classpath:mapper/*.xml
+
+mapper:
+    mappers:
+        - com.cnblogs.yjmyzz.util.MyMapper
+    not-empty: false
+    identity: MYSQL
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql

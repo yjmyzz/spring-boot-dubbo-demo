@@ -14,6 +14,11 @@ public class ServiceConsumer {
     public static void main(String[] args) {
         ConfigurableApplicationContext ctx = SpringApplication.run(ServiceConsumer.class, args);
         ServiceProxy proxy = ctx.getBean(ServiceProxy.class);
-        System.out.println(proxy.demoService.hello("菩提树下的杨过"));
+        System.out.println(proxy.demoService.hello("菩提树下的杨过"));//调用服务
+
+//        List<CityVO> list = proxy.demoService.getCityList();
+//        for (CityVO o : list) {
+//            System.out.println(o.toString());
+//        }
     }
 }
