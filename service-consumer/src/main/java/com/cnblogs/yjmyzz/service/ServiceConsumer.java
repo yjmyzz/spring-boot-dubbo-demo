@@ -19,7 +19,7 @@ public class ServiceConsumer {
         ServiceProxy proxy = ctx.getBean(ServiceProxy.class);
         System.out.println(proxy.demoService.hello("菩提树下的杨过"));//调用服务
 
-        List<CityVO> list = proxy.demoService.getCityList();
+        List<CityVO> list = proxy.demoService.getCityList(1, 2);
         for (CityVO o : list) {
             System.out.println(o.toString());
         }

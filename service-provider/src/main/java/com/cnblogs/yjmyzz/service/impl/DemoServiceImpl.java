@@ -5,6 +5,7 @@ import com.cnblogs.yjmyzz.dao.mapper.CityMapper;
 import com.cnblogs.yjmyzz.dao.model.City;
 import com.cnblogs.yjmyzz.service.api.DemoService;
 import com.cnblogs.yjmyzz.service.api.vo.CityVO;
+import com.github.pagehelper.PageHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,10 @@ public class DemoServiceImpl implements DemoService {
     }
 
     @Override
-    public List<CityVO> getCityList() {
+    public List<CityVO> getCityList(int pageIndex, int pageSize) {
+        PageHelper.startPage(pageIndex, pageSize);//设置分页参数
         List<City> list = cityMapper.selectAll();
+        com.github.pagehelper.PageInfo page = new com.github.pagehelper.PageInfo<>(list);//取页面信息
         List<CityVO> result = new ArrayList<>();
         if (!CollectionUtils.isEmpty(list)) {
             for (City c : list) {
@@ -41,6 +44,7 @@ public class DemoServiceImpl implements DemoService {
                 result.add(v);
             }
         }
+        logger.info("pageInfo=> page:" + page.getPageNum() + "/" + page.getPages());
         return result;
     }
 

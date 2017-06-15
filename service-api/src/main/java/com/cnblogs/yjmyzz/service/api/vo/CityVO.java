@@ -1,10 +1,13 @@
 package com.cnblogs.yjmyzz.service.api.vo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
  * Created by yangjunming on 2017/6/14.
  */
+@Data
 public class CityVO implements Serializable {
 
     /**
@@ -18,27 +21,4 @@ public class CityVO implements Serializable {
     private String provinceName;
 
 
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
-
-    public String getProvinceName() {
-        return provinceName;
-    }
-
-    public void setProvinceName(String provinceName) {
-        this.provinceName = provinceName;
-    }
-
-    @Override
-    public String toString() {
-        return "CityVO{" +
-                "cityName='" + cityName + '\'' +
-                ", provinceName='" + provinceName + '\'' +
-                '}';
-    }
 }

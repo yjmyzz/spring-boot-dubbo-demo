@@ -10,5 +10,5 @@ import java.util.List;
 public interface DemoService {
     String hello(String nickName);
 
-    List<CityVO> getCityList();
+    List<CityVO> getCityList(int pageIndex, int pageSize);
 }

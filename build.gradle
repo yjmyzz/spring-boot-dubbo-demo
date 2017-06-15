@@ -36,8 +36,8 @@ subprojects {
     }
 
     dependencies {
+        compile "org.projectlombok:lombok:1.16.12"
         compile('io.dubbo.springboot:spring-boot-starter-dubbo:1.0.0')
-
         compile('org.springframework.boot:spring-boot-starter-web:1.5.3.RELEASE')
 
     }
