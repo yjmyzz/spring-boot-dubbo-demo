@@ -3,7 +3,11 @@ server:
 
 logging:
     level:
-        tk.mybatis: TRACE
+        root: DEBUG
+        tk.mybatis: DEBUG
+        com.alibaba.dubbo: ERROR
+        org.apache.zookeeper: ERROR
+    file: "/var/log/application/dubbo-provider.log"
 
 spring:
   dubbo:
@@ -15,6 +19,11 @@ spring:
     protocol:
         name: dubbo
         port: 20880
+  main:
+    banner-mode: "off"
+  devtools:
+    restart:
+      trigger-file: .trigger
 
 druid:
     url: jdbc:mysql://localhost:3306/study?useSSL=false
@@ -41,3 +50,8 @@ pagehelper:
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql
+
+management:
+  security:
+    enabled: false
+  port: 9001

@@ -8,6 +8,9 @@ subprojects {
             maven {
                 url "http://maven.aliyun.com/nexus/content/groups/public/"
             }
+            maven {
+                url "http://nexus.mwbyd.cn/nexus/content/groups/public/"
+            }
             mavenCentral()
         }
         dependencies {
@@ -28,6 +31,9 @@ subprojects {
         maven {
             url "http://maven.aliyun.com/nexus/content/groups/public/"
         }
+        maven {
+            url "http://nexus.mwbyd.cn/nexus/content/groups/public/"
+        }
         mavenCentral()
     }
 
@@ -35,11 +41,21 @@ subprojects {
         resolutionStrategy.cacheChangingModulesFor 1, "minutes"
     }
 
+    configurations {
+        all*.exclude group: "log4j", module: "log4j"
+        all*.exclude group: "org.slf4j", module: "slf4j-log4j12"
+        all*.exclude group: "ch.qos.logback", module: "logback-classic"
+        all*.exclude group: "commons-logging", module: "commons-logging"
+    }
+
     dependencies {
-        compile "org.projectlombok:lombok:1.16.12"
+        compileOnly "org.projectlombok:lombok:1.16.12"
         compile('io.dubbo.springboot:spring-boot-starter-dubbo:1.0.0')
         compile('org.springframework.boot:spring-boot-starter-web:1.5.3.RELEASE')
-
+//        compile('org.springframework.boot:spring-boot-devtools:1.5.3.RELEASE')
+        compile('org.springframework.boot:spring-boot-starter-actuator:1.5.3.RELEASE')
+        compile("com.alibaba:dubbo:2.8.5-SNAPSHOT")
+        compile "com.101tec:zkclient:0.8.1"
     }
 
 }

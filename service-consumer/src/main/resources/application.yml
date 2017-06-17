@@ -8,3 +8,20 @@ spring:
       name: consumer
     registry:
       address: zookeeper://127.0.0.1:2181
+  main:
+    banner-mode: "off"
+  devtools:
+    restart:
+      trigger-file: .trigger
+
+management:
+  security:
+    enabled: false
+  port: 9002
+
+logging:
+    level:
+        root: DEBUG
+        com.alibaba.dubbo: ERROR
+        org.apache.zookeeper: ERROR
+    file: "/var/log/application/dubbo-consumer.log"
