@@ -1,7 +1,7 @@
 subprojects {
     buildscript {
         ext {
-            springBootVersion = '1.5.3.RELEASE'
+            springBootVersion = '1.5.4.RELEASE'
         }
         repositories {
             mavenLocal()
