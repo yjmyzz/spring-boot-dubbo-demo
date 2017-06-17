@@ -26,14 +26,33 @@ spring:
       trigger-file: .trigger
 
 druid:
-    url: jdbc:mysql://localhost:3306/study?useSSL=false
-    driver-class: com.mysql.jdbc.Driver
-    username: root
-    password: A1b2c3@def.com
-    initial-size: 1
-    min-idle: 1
-    max-active: 20
-    test-on-borrow: true
+    master:
+      url: jdbc:mysql://localhost:3306/study?useSSL=false
+      driver-class: com.mysql.jdbc.Driver
+      username: root
+      password: A1b2c3@def.com
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+    slave1:
+      url: jdbc:mysql://localhost:3306/study?useSSL=false
+      driver-class: com.mysql.jdbc.Driver
+      username: root
+      password: A1b2c3@def.com
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+    slave2:
+      url: jdbc:mysql://localhost:3306/study?useSSL=false
+      driver-class: com.mysql.jdbc.Driver
+      username: root
+      password: A1b2c3@def.com
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
 
 mybatis:
     type-aliases-package: com.cnblogs.yjmyzz.service.dao

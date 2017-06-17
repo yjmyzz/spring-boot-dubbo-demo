@@ -1,11 +1,13 @@
 package com.cnblogs.yjmyzz.druid;
 
 import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "druid")
+/**
+ * Created by yangjunming on 2017/6/17.
+ */
 @Data
-public class DruidProperties {
+public abstract class AbstractDruidProperties {
+
     private String url;
     private String username;
     private String password;
