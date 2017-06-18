@@ -1,5 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.cnblogs.yjmyzz.druid.DruidMasterAutoConfiguration,\
-com.cnblogs.yjmyzz.druid.DruidSlave1AutoConfiguration,\
-com.cnblogs.yjmyzz.druid.DruidSlave2AutoConfiguration
+com.cnblogs.yjmyzz.db.druid.DataSourceConfiguration,\
+com.cnblogs.yjmyzz.db.druid.MybatisConfiguration
