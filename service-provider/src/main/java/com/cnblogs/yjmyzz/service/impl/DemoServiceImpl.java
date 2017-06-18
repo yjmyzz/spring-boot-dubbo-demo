@@ -35,7 +35,6 @@ public class DemoServiceImpl implements DemoService {
     @Override
     @ReadOnlyConnection
     public List<CityVO> getCityList(int pageIndex, int pageSize) {
-        DbContextHolder.setDbType(DbContextHolder.DbType.SLAVE);
         PageHelper.startPage(pageIndex, pageSize);//设置分页参数
         List<City> list = cityMapper.selectAll();
         com.github.pagehelper.PageInfo page = new com.github.pagehelper.PageInfo<>(list);//取页面信息

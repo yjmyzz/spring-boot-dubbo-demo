@@ -7,6 +7,7 @@ public class ReadWriteSplitRoutingDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected Object determineCurrentLookupKey() {
+
         return DbContextHolder.getDbType();
     }
 }
