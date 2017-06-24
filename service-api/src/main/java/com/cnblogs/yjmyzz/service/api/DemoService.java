@@ -1,6 +1,7 @@
 package com.cnblogs.yjmyzz.service.api;
 
 import com.cnblogs.yjmyzz.service.api.vo.CityVO;
+import com.cnblogs.yjmyzz.service.api.vo.ProductVO;
 
 import java.util.List;
 
@@ -10,5 +11,13 @@ import java.util.List;
 public interface DemoService {
     String hello(String nickName);
 
-    List<CityVO> getCityList(int pageIndex, int pageSize);
+    List<CityVO> getCityList1(int pageIndex, int pageSize);
+
+
+    List<CityVO> getCityList2(int pageIndex, int pageSize);
+
+
+    ProductVO getProduct1();
+
+    ProductVO getProduct2();
 }

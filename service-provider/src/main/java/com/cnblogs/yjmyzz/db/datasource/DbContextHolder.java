@@ -1,9 +1,9 @@
-package com.cnblogs.yjmyzz.db.mybatis;
+package com.cnblogs.yjmyzz.db.datasource;
 
 public class DbContextHolder {
 
     public enum DbType {
-        MASTER, SLAVE
+        STUDY_MASTER, STUDY_SLAVE, PRODUCT_MASTER, PRODUCT_SLAVE
     }
 
     private static final ThreadLocal<DbType> contextHolder = new ThreadLocal<>();
@@ -14,7 +14,7 @@ public class DbContextHolder {
     }
 
     public static DbType getDbType() {
-        return contextHolder.get() == null ? DbType.MASTER : contextHolder.get();
+        return contextHolder.get() == null ? DbType.PRODUCT_MASTER : contextHolder.get();
     }
 
     public static void clearDbType() {

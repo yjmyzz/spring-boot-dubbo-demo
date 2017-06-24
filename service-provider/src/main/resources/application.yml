@@ -24,10 +24,14 @@ spring:
   devtools:
     restart:
       trigger-file: .trigger
+  aop:
+    auto: true
+    proxy-target-class: true
 
 druid:
     type: com.alibaba.druid.pool.DruidDataSource
-    master:
+    study:
+      master:
         url: jdbc:mysql://localhost:3306/study?useSSL=false&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
         driver-class-name: com.mysql.cj.jdbc.Driver
         username: root
@@ -36,8 +40,27 @@ druid:
         min-idle: 1
         max-active: 20
         test-on-borrow: true
-    slave:
+      slave:
         url: jdbc:mysql://localhost:3306/study_slave?useSSL=false&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: A1b2c3@def.com
+        initial-size: 5
+        min-idle: 1
+        max-active: 20
+        test-on-borrow: true
+    product:
+      master:
+        url: jdbc:mysql://localhost:3306/product?useSSL=false&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: A1b2c3@def.com
+        initial-size: 5
+        min-idle: 1
+        max-active: 20
+        test-on-borrow: true
+      slave:
+        url: jdbc:mysql://localhost:3306/product_slave?useSSL=false&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true
         driver-class-name: com.mysql.cj.jdbc.Driver
         username: root
         password: A1b2c3@def.com
@@ -48,7 +71,9 @@ druid:
 
 mybatis:
     type-aliases-package: com.cnblogs.yjmyzz.service.dao.model
-    mapper-locations: classpath:mapper/*.xml
+    mapper-locations:
+      - classpath:mapper/product/*.xml
+      - classpath:mapper/study/*.xml
 
 mapper:
     mappers:

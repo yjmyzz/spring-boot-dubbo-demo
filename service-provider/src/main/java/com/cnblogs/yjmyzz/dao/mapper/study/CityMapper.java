@@ -1,4 +1,4 @@
-package com.cnblogs.yjmyzz.dao.mapper;
+package com.cnblogs.yjmyzz.dao.mapper.study;
 
 import com.cnblogs.yjmyzz.dao.model.City;
 import com.cnblogs.yjmyzz.util.MyMapper;

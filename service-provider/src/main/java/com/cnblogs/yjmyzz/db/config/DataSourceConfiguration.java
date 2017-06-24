@@ -1,4 +1,4 @@
-package com.cnblogs.yjmyzz.db.druid;
+package com.cnblogs.yjmyzz.db.config;
 
 /**
  * Created by jimmy on 6/18/17.
@@ -22,17 +22,28 @@ public class DataSourceConfiguration {
     @Value("${druid.type}")
     private Class<? extends DataSource> dataSourceType;
 
-
-    @Bean(name = "masterDataSource")
+    @Bean(name = "studyMasterDataSource")
     @Primary
-    @ConfigurationProperties(prefix = "druid.master")
-    public DataSource masterDataSource() {
+    @ConfigurationProperties(prefix = "druid.study.master")
+    public DataSource studyMasterDataSource() {
         return DataSourceBuilder.create().type(dataSourceType).build();
     }
 
-    @Bean(name = "slaveDataSource")
-    @ConfigurationProperties(prefix = "druid.slave")
-    public DataSource slaveDataSource1() {
+    @Bean(name = "studySlaveDataSource")
+    @ConfigurationProperties(prefix = "druid.study.slave")
+    public DataSource studySlaveDataSource1() {
+        return DataSourceBuilder.create().type(dataSourceType).build();
+    }
+
+    @Bean(name = "productMasterDataSource")
+    @ConfigurationProperties(prefix = "druid.product.master")
+    public DataSource productMasterDataSource() {
+        return DataSourceBuilder.create().type(dataSourceType).build();
+    }
+
+    @Bean(name = "productSlaveDataSource")
+    @ConfigurationProperties(prefix = "druid.product.slave")
+    public DataSource productSlaveDataSource1() {
         return DataSourceBuilder.create().type(dataSourceType).build();
     }
 

@@ -1,9 +1,9 @@
-package com.cnblogs.yjmyzz.db.mybatis;
+package com.cnblogs.yjmyzz.db.datasource;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 
-public class ReadWriteSplitRoutingDataSource extends AbstractRoutingDataSource {
+public class MasterSlaveRoutingDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected Object determineCurrentLookupKey() {

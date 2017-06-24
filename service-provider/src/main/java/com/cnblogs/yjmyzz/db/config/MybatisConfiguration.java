@@ -1,13 +1,12 @@
-package com.cnblogs.yjmyzz.db.druid;
+package com.cnblogs.yjmyzz.db.config;
 
-import com.cnblogs.yjmyzz.db.mybatis.DbContextHolder;
-import com.cnblogs.yjmyzz.db.mybatis.ReadWriteSplitRoutingDataSource;
+import com.cnblogs.yjmyzz.db.datasource.DbContextHolder;
+import com.cnblogs.yjmyzz.db.datasource.MasterSlaveRoutingDataSource;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.mapping.DatabaseIdProvider;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.aspectj.apache.bcel.util.ClassLoaderRepository;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
@@ -72,11 +71,17 @@ public class MybatisConfiguration {
 
     private final List<ConfigurationCustomizer> configurationCustomizers;
 
-    @Resource(name = "masterDataSource")
-    private DataSource masterDataSource;
+    @Resource(name = "studyMasterDataSource")
+    private DataSource studyMasterDataSource;
 
-    @Resource(name = "slaveDataSource")
-    private DataSource slaveDataSource;
+    @Resource(name = "studySlaveDataSource")
+    private DataSource studySlaveDataSource;
+
+    @Resource(name = "productMasterDataSource")
+    private DataSource productMasterDataSource;
+
+    @Resource(name = "productSlaveDataSource")
+    private DataSource productSlaveDataSource;
 
     public MybatisConfiguration(MybatisProperties properties,
                                 ObjectProvider<Interceptor[]> interceptorsProvider,
@@ -226,11 +231,13 @@ public class MybatisConfiguration {
 
 
     public AbstractRoutingDataSource roundRobinDataSouceProxy() {
-        ReadWriteSplitRoutingDataSource proxy = new ReadWriteSplitRoutingDataSource();
+        MasterSlaveRoutingDataSource proxy = new MasterSlaveRoutingDataSource();
         Map<Object, Object> targetDataResources = new HashMap<>();
-        targetDataResources.put(DbContextHolder.DbType.MASTER, masterDataSource);
-        targetDataResources.put(DbContextHolder.DbType.SLAVE, slaveDataSource);
-        proxy.setDefaultTargetDataSource(masterDataSource);
+        targetDataResources.put(DbContextHolder.DbType.PRODUCT_MASTER, productMasterDataSource);
+        targetDataResources.put(DbContextHolder.DbType.PRODUCT_SLAVE, productSlaveDataSource);
+        targetDataResources.put(DbContextHolder.DbType.STUDY_MASTER, studyMasterDataSource);
+        targetDataResources.put(DbContextHolder.DbType.STUDY_SLAVE, studySlaveDataSource);
+        proxy.setDefaultTargetDataSource(productMasterDataSource);
         proxy.setTargetDataSources(targetDataResources);
         proxy.afterPropertiesSet();
         return proxy;
