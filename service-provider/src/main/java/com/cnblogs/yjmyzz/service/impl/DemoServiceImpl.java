@@ -1,10 +1,11 @@
 package com.cnblogs.yjmyzz.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.cnblogs.yjmyzz.dao.mapper.product.ProductMapper;
-import com.cnblogs.yjmyzz.dao.mapper.study.CityMapper;
-import com.cnblogs.yjmyzz.dao.model.product.Product;
-import com.cnblogs.yjmyzz.dao.model.study.City;
+import com.cnblogs.yjmyzz.dao.mapper.CityMapper;
+import com.cnblogs.yjmyzz.dao.mapper.ProductMapper;
+import com.cnblogs.yjmyzz.dao.model.City;
+import com.cnblogs.yjmyzz.dao.model.Product;
+import com.cnblogs.yjmyzz.dao.vo.ProductParam;
 import com.cnblogs.yjmyzz.db.annotation.ProductMaster;
 import com.cnblogs.yjmyzz.db.annotation.ProductSlave;
 import com.cnblogs.yjmyzz.db.annotation.StudyMaster;
@@ -18,9 +19,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -66,6 +70,36 @@ public class DemoServiceImpl implements DemoService {
     @ProductSlave
     public ProductVO getProduct2() {
         return getFirst();
+    }
+
+    @Override
+    public List<ProductVO> getProduct3() {
+        ProductParam param = new ProductParam();
+        param.setUpdateTimeStart(new Date(System.currentTimeMillis() - 24 * 3600 * 1000));
+        param.setUpdateTimeEnd(new Date());
+        List<Product> list = productMapper.selectByParam(param);
+        List<ProductVO> result = new ArrayList<>();
+        if (!CollectionUtils.isEmpty(list)) {
+            for (Product p : list) {
+                ProductVO vo = new ProductVO();
+                vo.setPrice(p.getPrice());
+                vo.setName(p.getName());
+                result.add(vo);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public boolean insertProduct() throws Exception {
+        Product p1 = new Product();
+        p1.setName("AAAA");
+        p1.setPrice(new BigDecimal(10.0));
+        productMapper.insertSelective(p1);
+        logger.info("p1.id=>" + p1.getId());
+        productMapper.insertSelective(p1);
+        return false;
     }
 
     private ProductVO getFirst() {

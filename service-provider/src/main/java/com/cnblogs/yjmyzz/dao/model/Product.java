@@ -1,6 +1,7 @@
-package com.cnblogs.yjmyzz.dao.model.product;
+package com.cnblogs.yjmyzz.dao.model;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.*;
 
 public class Product {
@@ -19,6 +20,12 @@ public class Product {
      * 价格
      */
     private BigDecimal price;
+
+    @Column(name = "create_time")
+    private Date createTime;
+
+    @Column(name = "update_time")
+    private Date updateTime;
 
     /**
      * 获取流水号
@@ -72,5 +79,33 @@ public class Product {
      */
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    /**
+     * @return create_time
+     */
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    /**
+     * @param createTime
+     */
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    /**
+     * @return update_time
+     */
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    /**
+     * @param updateTime
+     */
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

@@ -74,12 +74,14 @@ mybatis:
     mapper-locations:
       - classpath:mapper/product/*.xml
       - classpath:mapper/study/*.xml
+    config-location: classpath:mybatis-config.xml
 
 mapper:
     mappers:
         - com.cnblogs.yjmyzz.util.MyMapper
     not-empty: false
     identity: MYSQL
+
 
 pagehelper:
     helperDialect: mysql

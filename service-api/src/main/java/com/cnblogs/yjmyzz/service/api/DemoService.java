@@ -20,4 +20,8 @@ public interface DemoService {
     ProductVO getProduct1();
 
     ProductVO getProduct2();
+
+    List<ProductVO> getProduct3();
+
+    boolean insertProduct() throws Exception;
 }

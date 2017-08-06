@@ -52,8 +52,8 @@ subprojects {
         compile "org.projectlombok:lombok:1.16.12"
         compile('io.dubbo.springboot:spring-boot-starter-dubbo:1.0.0')
         compile('org.springframework.boot:spring-boot-starter-web:1.5.3.RELEASE')
-//        compile('org.springframework.boot:spring-boot-devtools:1.5.3.RELEASE')
         compile('org.springframework.boot:spring-boot-starter-actuator:1.5.3.RELEASE')
+        compile('org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE')
         compile("com.alibaba:dubbo:2.8.5-SNAPSHOT")
         compile "com.101tec:zkclient:0.8.1"
     }

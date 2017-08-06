@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cnblogs.yjmyzz.dao.mapper.ProductMapper">
+    <resultMap id="BaseResultMap" type="com.cnblogs.yjmyzz.dao.model.Product">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <select id="getFirst" resultMap="BaseResultMap">
+      select * from product limit 0,1
+    </select>
+
+    <select id="selectByParam" resultMap="BaseResultMap">
+        SELECT * FROM product
+        <where>
+            <if test="updateTimeStart!=null">
+                AND create_time BETWEEN #{updateTimeStart,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTimeEnd!=null">
+                AND #{updateTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+</mapper>
