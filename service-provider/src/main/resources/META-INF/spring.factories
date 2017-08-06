@@ -1,4 +1,0 @@
-# Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.cnblogs.yjmyzz.db.config.DataSourceConfiguration,\
-com.cnblogs.yjmyzz.db.config.MybatisConfiguration

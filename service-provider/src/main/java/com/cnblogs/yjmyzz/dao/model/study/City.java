@@ -1,4 +1,4 @@
-package com.cnblogs.yjmyzz.dao.model;
+package com.cnblogs.yjmyzz.dao.model.study;
 
 import javax.persistence.*;
 
